@@ -10,9 +10,13 @@
 
 namespace Swoftx\RabbitMQ;
 
+use PhpAmqpLib\Connection\AbstractConnection as PhpAmqpLibConnection;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+
 class SyncConnection extends Connection
 {
-    public function createConnection()
+    public function initConnection($host, $port, $user, $pass, $vhost): PhpAmqpLibConnection
     {
+        return new AMQPStreamConnection($host, $port, $user, $pass, $vhost);
     }
 }

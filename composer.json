@@ -28,7 +28,8 @@
     },
     "require": {
         "php": ">=7.0",
-        "swoft/framework": "^1.0.24"
+        "swoft/framework": "^1.0.24",
+        "swoft/php-amqplib": "^2.7"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "dev-master",

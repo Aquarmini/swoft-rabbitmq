@@ -12,4 +12,9 @@ return [
     'version' => '1.0',
     'autoInitBean' => true,
     'beanScan' => [],
+    'components' => [
+        'custom' => [
+            'Swoftx\\RabbitMQ' => BASE_PATH . '/../src',
+        ],
+    ],
 ];

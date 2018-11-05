@@ -10,6 +10,13 @@
 
 namespace Swoftx\RabbitMQ;
 
-class CoroutineConnection
+use PhpAmqpLib\Connection\AbstractConnection as PhpAmqpLibConnection;
+use PhpAmqpLib\Connection\AMQPSwooleConnection;
+
+class CoroutineConnection extends Connection
 {
+    public function initConnection($host, $port, $user, $pass, $vhost): PhpAmqpLibConnection
+    {
+        return new AMQPSwooleConnection($host, $port, $user, $pass, $vhost);
+    }
 }

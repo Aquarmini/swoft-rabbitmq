@@ -90,5 +90,55 @@ class RabbitMQPoolConfig extends PoolProperties
      * @Value(name="${config.rabbitMQ.uri}", env="${RABBITMQ_URI}")
      * @var array
      */
-    protected $uri = [];
+    protected $uri = [
+        '127.0.0.1:5672'
+    ];
+
+    /**
+     * the user of pool
+     *
+     * @Value(name="${config.rabbitMQ.user}", env="${RABBITMQ_USER}")
+     * @var string
+     */
+    protected $user = 'guest';
+
+    /**
+     * the pass of pool
+     *
+     * @Value(name="${config.rabbitMQ.pass}", env="${RABBITMQ_PASS}")
+     * @var string
+     */
+    protected $pass = 'guest';
+
+    /**
+     * the vhost of pool
+     *
+     * @Value(name="${config.rabbitMQ.vhost}", env="${RABBITMQ_VHOST}")
+     * @var string
+     */
+    protected $vhost = '/';
+
+    /**
+     * @return string
+     */
+    public function getUser(): string
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPass(): string
+    {
+        return $this->pass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVhost(): string
+    {
+        return $this->vhost;
+    }
 }
