@@ -44,6 +44,7 @@ abstract class Connection extends AbstractConnection
 
     public function reconnect()
     {
+        // $this->connection->reconnect();
         $this->createConnection();
 
         return $this;
@@ -51,7 +52,19 @@ abstract class Connection extends AbstractConnection
 
     public function check(): bool
     {
-        return true;
+        $lastTime = $this->getLastTime();
+        $idleTime = $this->getPool()->getPoolConfig()->getMaxIdleTime();
+
+        if ($lastTime + $idleTime < time()) {
+            return false;
+        }
+
+        $sock = $this->connection->getIO()->getSocket();
+        if ($sock instanceof \Swoole\Coroutine\Client) {
+            return $this->connection->isConnected() && $sock->isConnected();
+        }
+
+        return $this->connection->isConnected();
     }
 
     /**
